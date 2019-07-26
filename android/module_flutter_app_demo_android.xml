@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_flutter_app_demo_android" default="compile.module.flutter_app_demo_android">
+  <dirname property="module.flutter_app_demo_android.basedir" file="${ant.file.module_flutter_app_demo_android}"/>
+  
+  <property name="module.jdk.home.flutter_app_demo_android" value="${jdk.home.android_api_28_platform}"/>
+  <property name="module.jdk.bin.flutter_app_demo_android" value="${jdk.bin.android_api_28_platform}"/>
+  <property name="module.jdk.classpath.flutter_app_demo_android" value="jdk.classpath.android_api_28_platform"/>
+  
+  <property name="compiler.args.flutter_app_demo_android" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="flutter_app_demo_android.output.dir" value="${module.flutter_app_demo_android.basedir}/app/outouts/production/flutter_app_demo_android"/>
+  <property name="flutter_app_demo_android.testoutput.dir" value="${module.flutter_app_demo_android.basedir}/app/outouts/test/flutter_app_demo_android"/>
+  
+  <path id="flutter_app_demo_android.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="flutter_app_demo_android.module.production.classpath">
+    <path refid="${module.jdk.classpath.flutter_app_demo_android}"/>
+    <path refid="library.flutter_for_android.classpath"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+  </path>
+  
+  <path id="flutter_app_demo_android.runtime.production.module.classpath">
+    <pathelement location="${flutter_app_demo_android.output.dir}"/>
+    <path refid="library.flutter_for_android.classpath"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+  </path>
+  
+  <path id="flutter_app_demo_android.module.classpath">
+    <path refid="${module.jdk.classpath.flutter_app_demo_android}"/>
+    <pathelement location="${flutter_app_demo_android.output.dir}"/>
+    <path refid="library.flutter_for_android.classpath"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+  </path>
+  
+  <path id="flutter_app_demo_android.runtime.module.classpath">
+    <pathelement location="${flutter_app_demo_android.testoutput.dir}"/>
+    <pathelement location="${flutter_app_demo_android.output.dir}"/>
+    <path refid="library.flutter_for_android.classpath"/>
+    <path refid="library.kotlinjavaruntime.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.flutter_app_demo_android">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.flutter_app_demo_android">
+    <patternset refid="excluded.from.module.flutter_app_demo_android"/>
+  </patternset>
+  
+  <path id="flutter_app_demo_android.module.sourcepath">
+    <dirset dir="${module.flutter_app_demo_android.basedir}">
+      <include name="app/src/main/java"/>
+      <include name="app/src/main/kotlin"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.flutter_app_demo_android" depends="compile.module.flutter_app_demo_android.production,compile.module.flutter_app_demo_android.tests" description="Compile module flutter_app_demo_android"/>
+  
+  <target name="compile.module.flutter_app_demo_android.production" depends="register.custom.compilers" description="Compile module flutter_app_demo_android; production classes">
+    <mkdir dir="${flutter_app_demo_android.output.dir}"/>
+    <javac2 destdir="${flutter_app_demo_android.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.flutter_app_demo_android}/javac">
+      <compilerarg line="${compiler.args.flutter_app_demo_android}"/>
+      <bootclasspath refid="flutter_app_demo_android.module.bootclasspath"/>
+      <classpath refid="flutter_app_demo_android.module.production.classpath"/>
+      <src refid="flutter_app_demo_android.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.flutter_app_demo_android"/>
+    </javac2>
+    
+    <copy todir="${flutter_app_demo_android.output.dir}">
+      <fileset dir="${module.flutter_app_demo_android.basedir}/app/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.flutter_app_demo_android.basedir}/app/src/main/kotlin">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.flutter_app_demo_android.tests" depends="register.custom.compilers,compile.module.flutter_app_demo_android.production" description="compile module flutter_app_demo_android; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.flutter_app_demo_android" description="cleanup module">
+    <delete dir="${flutter_app_demo_android.output.dir}"/>
+    <delete dir="${flutter_app_demo_android.testoutput.dir}"/>
+  </target>
+</project>

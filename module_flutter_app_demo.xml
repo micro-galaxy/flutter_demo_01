@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_flutter_app_demo" default="compile.module.flutter_app_demo">
+  <dirname property="module.flutter_app_demo.basedir" file="${ant.file.module_flutter_app_demo}"/>
+  
+  <property name="module.jdk.home.flutter_app_demo" value="${jdk.home.1.8}"/>
+  <property name="module.jdk.bin.flutter_app_demo" value="${jdk.bin.1.8}"/>
+  <property name="module.jdk.classpath.flutter_app_demo" value="jdk.classpath.1.8"/>
+  
+  <property name="compiler.args.flutter_app_demo" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="flutter_app_demo.output.dir" value="${module.flutter_app_demo.basedir}/android/app/outouts/production/flutter_app_demo"/>
+  <property name="flutter_app_demo.testoutput.dir" value="${module.flutter_app_demo.basedir}/android/app/outouts/test/flutter_app_demo"/>
+  
+  <path id="flutter_app_demo.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="flutter_app_demo.module.production.classpath">
+    <path refid="${module.jdk.classpath.flutter_app_demo}"/>
+    <path refid="library.dart_sdk.classpath"/>
+    <path refid="library.flutter_plugins.classpath"/>
+    <path refid="library.dart_packages.classpath"/>
+  </path>
+  
+  <path id="flutter_app_demo.runtime.production.module.classpath">
+    <pathelement location="${flutter_app_demo.output.dir}"/>
+    <path refid="library.dart_sdk.classpath"/>
+    <path refid="library.flutter_plugins.classpath"/>
+    <path refid="library.dart_packages.classpath"/>
+  </path>
+  
+  <path id="flutter_app_demo.module.classpath">
+    <path refid="${module.jdk.classpath.flutter_app_demo}"/>
+    <pathelement location="${flutter_app_demo.output.dir}"/>
+    <path refid="library.dart_sdk.classpath"/>
+    <path refid="library.flutter_plugins.classpath"/>
+    <path refid="library.dart_packages.classpath"/>
+  </path>
+  
+  <path id="flutter_app_demo.runtime.module.classpath">
+    <pathelement location="${flutter_app_demo.testoutput.dir}"/>
+    <pathelement location="${flutter_app_demo.output.dir}"/>
+    <path refid="library.dart_sdk.classpath"/>
+    <path refid="library.flutter_plugins.classpath"/>
+    <path refid="library.dart_packages.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.flutter_app_demo">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.flutter_app_demo">
+    <patternset refid="excluded.from.module.flutter_app_demo"/>
+  </patternset>
+  
+  <path id="flutter_app_demo.module.sourcepath">
+    <dirset dir="${module.flutter_app_demo.basedir}">
+      <include name="lib"/>
+    </dirset>
+  </path>
+  
+  <path id="flutter_app_demo.module.test.sourcepath">
+    <dirset dir="${module.flutter_app_demo.basedir}">
+      <include name="test"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.flutter_app_demo" depends="compile.module.flutter_app_demo.production,compile.module.flutter_app_demo.tests" description="Compile module flutter_app_demo"/>
+  
+  <target name="compile.module.flutter_app_demo.production" depends="register.custom.compilers" description="Compile module flutter_app_demo; production classes">
+    <mkdir dir="${flutter_app_demo.output.dir}"/>
+    <javac2 destdir="${flutter_app_demo.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.flutter_app_demo}/javac">
+      <compilerarg line="${compiler.args.flutter_app_demo}"/>
+      <bootclasspath refid="flutter_app_demo.module.bootclasspath"/>
+      <classpath refid="flutter_app_demo.module.production.classpath"/>
+      <src refid="flutter_app_demo.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.flutter_app_demo"/>
+    </javac2>
+    
+    <copy todir="${flutter_app_demo.output.dir}">
+      <fileset dir="${module.flutter_app_demo.basedir}/lib">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.flutter_app_demo.tests" depends="register.custom.compilers,compile.module.flutter_app_demo.production" description="compile module flutter_app_demo; test classes" unless="skip.tests">
+    <mkdir dir="${flutter_app_demo.testoutput.dir}"/>
+    <javac2 destdir="${flutter_app_demo.testoutput.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.flutter_app_demo}/javac">
+      <compilerarg line="${compiler.args.flutter_app_demo}"/>
+      <bootclasspath refid="flutter_app_demo.module.bootclasspath"/>
+      <classpath refid="flutter_app_demo.module.classpath"/>
+      <src refid="flutter_app_demo.module.test.sourcepath"/>
+      <patternset refid="excluded.from.compilation.flutter_app_demo"/>
+    </javac2>
+    
+    <copy todir="${flutter_app_demo.testoutput.dir}">
+      <fileset dir="${module.flutter_app_demo.basedir}/test">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="clean.module.flutter_app_demo" description="cleanup module">
+    <delete dir="${flutter_app_demo.output.dir}"/>
+    <delete dir="${flutter_app_demo.testoutput.dir}"/>
+  </target>
+</project>
