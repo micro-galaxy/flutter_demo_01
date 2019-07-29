@@ -46,6 +46,10 @@ flutter:
       - images/orange.png
       - images/milk.png
       - images/KFC.png
+      - images/order.png
+      - images/rightArrow.png
+      - images/recommend.png
+      - images/setting.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:

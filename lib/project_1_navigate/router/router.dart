@@ -2,8 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_app_demo/project_1_navigate/navigate/navigate.dart';
 import 'package:flutter_app_demo/project_1_navigate/page/home.dart';
 import 'package:flutter_app_demo/project_1_navigate/page/login.dart';
-import 'package:flutter_app_demo/project_1_navigate/page/my.dart';
+import 'package:flutter_app_demo/project_1_navigate/page/myCenter.dart';
 import 'dart:convert';
+
+import 'package:flutter_app_demo/project_1_navigate/page/myCenterComponents/orderList.dart';
 
 //路由配置
 final List<Map> _routers = [
@@ -26,6 +28,11 @@ final List<Map> _routers = [
     "name": "Login",
     "path": "/login",
     "page": (BuildContext build) => new Login(),
+  },
+  {
+    "name": "OrderList",
+    "path": "/orderList",
+    "page": (BuildContext build) => new OrderList(),
   },
 ];
 

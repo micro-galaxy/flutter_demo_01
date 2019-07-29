@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_demo/project_1_navigate/page/home.dart';
-import 'package:flutter_app_demo/project_1_navigate/page/my.dart';
+import 'package:flutter_app_demo/project_1_navigate/page/myCenter.dart';
 
 class Navigate extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new _NavigateState();
+    return new NavigateState();
   }
 }
 
-class _NavigateState extends State<Navigate> {
+class NavigateState extends State<Navigate> {
   int _currentIndex = 0;
 
 //  底部路由包含两个页面
