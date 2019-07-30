@@ -3,9 +3,9 @@ import 'package:flutter_app_demo/project_1_navigate/navigate/navigate.dart';
 import 'package:flutter_app_demo/project_1_navigate/page/home.dart';
 import 'package:flutter_app_demo/project_1_navigate/page/login.dart';
 import 'package:flutter_app_demo/project_1_navigate/page/myCenter.dart';
-import 'dart:convert';
-
 import 'package:flutter_app_demo/project_1_navigate/page/myCenterComponents/orderList.dart';
+import 'package:flutter_app_demo/project_1_navigate/page/videoComponents/videoPlayer.dart';
+import 'package:flutter_app_demo/project_1_navigate/page/videoPlay.dart';
 
 //路由配置
 final List<Map> _routers = [
@@ -33,6 +33,11 @@ final List<Map> _routers = [
     "name": "OrderList",
     "path": "/orderList",
     "page": (BuildContext build) => new OrderList(),
+  },
+  {
+    "name": "VideoPlay",
+    "path": "/videoplay",
+    "page": (BuildContext build) => new VideoPlay(),
   },
 ];
 

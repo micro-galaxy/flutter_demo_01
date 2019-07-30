@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 class OrderList extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return OrderListPage();
+    return OrderListState();
   }
 }
 
-class OrderListPage extends State<OrderList> {
+class OrderListState extends State<OrderList> {
   BuildContext context;
   double width;
   double height;

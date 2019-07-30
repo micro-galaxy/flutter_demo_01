@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 class UserInfo extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new UserInfoPage();
+    return new UserInfoState();
   }
 }
 
-class UserInfoPage extends State<UserInfo> {
+class UserInfoState extends State<UserInfo> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -62,14 +62,6 @@ class UserInfoPage extends State<UserInfo> {
         backgroundImage: NetworkImage(
             'https://upload-images.jianshu.io/upload_images/3673902-3bce60950bb63c7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/247/format/webp'),
       ),
-    );
-
-    CircleAvatar(
-      //头像半径
-      radius: 60,
-      //头像图片 -> NetworkImage网络图片，AssetImage项目资源包图片, FileImage本地存储图片
-      backgroundImage: NetworkImage(
-          'https://pic2.zhimg.com/v2-639b49f2f6578eabddc458b84eb3c6a1.jpg'),
     );
   }
 }

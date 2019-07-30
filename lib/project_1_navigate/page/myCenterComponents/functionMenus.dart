@@ -1,15 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_demo/project_1_navigate/router/router.dart';
+import 'package:flutter_app_demo/project_1_navigate/router/routerAnimation.dart';
+import 'package:video_player/video_player.dart';
+
+import 'package:flutter_app_demo/project_1_navigate/page/videoComponents/videoPlayer.dart';
+import 'orderList.dart';
 
 class FunctionMenus extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new FunctionMenusPage();
+    return new FunctionMenusState();
   }
 }
 
-class FunctionMenusPage extends State<FunctionMenus> {
+class FunctionMenusState extends State<FunctionMenus> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,10 +38,10 @@ class FunctionMenusPage extends State<FunctionMenus> {
               (details) => onOrderTapUp(context, details)),
           getLine(),
           getFunctionItem(context, "images/recommend.png", "意见反馈",
-              (details) => onOrderTapUp(context, details)),
+              (details) => onRecommendTapUp(context, details)),
           getLine(),
           getFunctionItem(context, "images/setting.png", "设置",
-              (details) => onOrderTapUp(context, details)),
+              (details) => onSettingTapUp(context, details)),
         ],
       ),
     );
@@ -105,5 +110,14 @@ class FunctionMenusPage extends State<FunctionMenus> {
 //  点击我的订单
   void onOrderTapUp(BuildContext context, TapUpDetails details) {
     Navigator.pushNamed(context, Router.getRouterPathByName("OrderList"));
+
+//    路由动画
+//    Navigator.push(context, RouterAnimation(new OrderList()));
+  }
+
+  void onRecommendTapUp(BuildContext context, details) {}
+
+  void onSettingTapUp(BuildContext context, details) {
+    Navigator.pushNamed(context, Router.getRouterPathByName("VideoPlay"));
   }
 }

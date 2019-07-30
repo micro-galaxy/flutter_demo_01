@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 class Search extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new SearchPage();
+    return new SearchState();
   }
 }
 
-class SearchPage extends State<Search> {
+class SearchState extends State<Search> {
   final controller = TextEditingController();
 
   @override

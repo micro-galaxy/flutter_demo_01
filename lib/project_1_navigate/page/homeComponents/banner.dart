@@ -4,11 +4,11 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 class MyBanner extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return new BannerPage();
+    return new MyBannerState();
   }
 }
 
-class BannerPage extends State<MyBanner> {
+class MyBannerState extends State<MyBanner> {
   @override
   Widget build(BuildContext context) {
 //return new Text("123");

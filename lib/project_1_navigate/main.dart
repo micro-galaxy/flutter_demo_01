@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: 'Flutter Demos',
-      theme: new ThemeData(primaryColor: Color(0xFF1296DB)),
+      theme: new ThemeData(
+          primaryColor: Color(0xFF1296DB), platform: TargetPlatform.iOS),
 //      注册所有页面路由
       routes: Router.getRouters(),
     );

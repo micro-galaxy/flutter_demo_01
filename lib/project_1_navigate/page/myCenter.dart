@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_demo/project_1_navigate/router/router.dart';
 
 import 'myCenterComponents/functionMenus.dart';
 import 'myCenterComponents/userInfo.dart';
