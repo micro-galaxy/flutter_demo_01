@@ -16,7 +16,7 @@ class UserInfoState extends State<UserInfo> {
       alignment: Alignment.topLeft,
       width: MediaQuery.of(context).size.width,
       height: 160.0,
-      color: Color(0xFF1296DB),
+      color: Colors.blue,
       child: Row(
         children: <Widget>[avatar(context), userName(context)],
       ),

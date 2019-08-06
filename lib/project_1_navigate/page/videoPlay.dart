@@ -15,11 +15,17 @@ class VideoPlayState extends State<VideoPlay> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title: Text("视频播放"),
         elevation: 0,
       ),
       body: Column(
-        children: <Widget>[new VideoPlayPlugin(), new VideoList()],
+        children: <Widget>[
+          new VideoPlayPlugin(),
+          Expanded(
+            child: new VideoList(),
+          )
+        ],
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 
 class MyBanner extends StatefulWidget {
@@ -13,8 +14,9 @@ class MyBannerState extends State<MyBanner> {
   Widget build(BuildContext context) {
 //return new Text("123");
     return new Container(
+//      color: Colors.red,
       // ignore: new_with_undefined_constructor_default
-      padding: EdgeInsets.fromLTRB(0, 6, 0, 6),
+      padding: EdgeInsets.fromLTRB(0, 8, 0, 0),
       //屏幕宽度
       width: MediaQuery.of(context).size.width,
       //1.8是banner宽高比，0.8是viewportFraction的值
@@ -33,18 +35,18 @@ class MyBannerState extends State<MyBanner> {
         duration: 600,
         //动画时间
 
-        control: new SwiperControl(size: 0),
+//        control: new SwiperControl(size: 0),
         //默认分页按钮
 
         //默认指示器
-        pagination: new SwiperPagination(
-          // SwiperPagination.fraction 数字1/5，默认点
-          builder: new DotSwiperPaginationBuilder(size: 0, activeSize: 0),
-        ),
+//        pagination: new SwiperPagination(
+        // SwiperPagination.fraction 数字1/5，默认点
+//          builder: new DotSwiperPaginationBuilder(size: 0, activeSize: 0),
+//        ),
 
         viewportFraction: 0.8,
         //视图宽度，即显示的item的宽度屏占比
-        scale: 0.9,
+        scale: 0.85,
         loop: true,
         //两侧item的缩放比
 

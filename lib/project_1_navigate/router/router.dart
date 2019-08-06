@@ -1,43 +1,71 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_app_demo/project_1_navigate/navigate/navigate.dart';
+import 'package:flutter_app_demo/project_1_navigate/page/appAbout.dart';
+import 'package:flutter_app_demo/project_1_navigate/page/feedback.dart';
 import 'package:flutter_app_demo/project_1_navigate/page/home.dart';
 import 'package:flutter_app_demo/project_1_navigate/page/login.dart';
+import 'package:flutter_app_demo/project_1_navigate/page/modifyPass.dart';
 import 'package:flutter_app_demo/project_1_navigate/page/myCenter.dart';
-import 'package:flutter_app_demo/project_1_navigate/page/myCenterComponents/orderList.dart';
-import 'package:flutter_app_demo/project_1_navigate/page/videoComponents/videoPlayer.dart';
+import 'package:flutter_app_demo/project_1_navigate/page/orderList.dart';
+import 'package:flutter_app_demo/project_1_navigate/page/setting.dart';
 import 'package:flutter_app_demo/project_1_navigate/page/videoPlay.dart';
 
 //路由配置
 final List<Map> _routers = [
   {
-    "name": "root",
+    "name": "Root",
     "path": "/",
-    "page": (BuildContext build) => new Navigate(),
+    "page": new Login(),
+  },
+  {
+    "name": "AppNavigate",
+    "path": "/navigate",
+    "page": new Navigate(),
   },
   {
     "name": "Home",
     "path": "/home",
-    "page": (BuildContext build) => new Home(),
+    "page": new Home(),
   },
   {
     "name": "My",
     "path": "/my",
-    "page": (BuildContext build) => new My(),
+    "page": new My(),
   },
   {
     "name": "Login",
     "path": "/login",
-    "page": (BuildContext build) => new Login(),
+    "page": new Login(),
   },
   {
     "name": "OrderList",
     "path": "/orderList",
-    "page": (BuildContext build) => new OrderList(),
+    "page": new OrderList(),
   },
   {
     "name": "VideoPlay",
     "path": "/videoplay",
-    "page": (BuildContext build) => new VideoPlay(),
+    "page": new VideoPlay(),
+  },
+  {
+    "name": "Feedback",
+    "path": "/feedback",
+    "page": new Feedback(),
+  },
+  {
+    "name": "Setting",
+    "path": "/setting",
+    "page": new Setting(),
+  },
+  {
+    "name": "ModifyPass",
+    "path": "/modifyPass",
+    "page": new ModifyPass(),
+  },
+  {
+    "name": "AppAbout",
+    "path": "/appabout",
+    "page": new AppAbout(),
   },
 ];
 
@@ -45,7 +73,8 @@ class Router {
 //  返回mainApp注册路由所需的路由数据
   static Map<String, WidgetBuilder> getRouters() {
     Map<String, WidgetBuilder> _registerRoutes = {};
-    _routers.forEach((route) => _registerRoutes[route['path']] = route['page']);
+    _routers.forEach((route) =>
+        _registerRoutes[route['path']] = (BuildContext build) => route['page']);
     return _registerRoutes;
   }
 

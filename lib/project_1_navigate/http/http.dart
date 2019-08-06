@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_demo/project_1_navigate/router/router.dart';
 import 'package:flutter_app_demo/project_1_navigate/storage/storage.dart';
+import 'package:connectivity/connectivity.dart';
 
 ///封装了Dio网络组件，添加拦截器处理请求头、token等、401等逻辑
 class Http {
@@ -41,6 +42,18 @@ class Http {
       @required Function progressCallback}) async {
     var dio = await _getInstance(context: context, method: "GET");
     dio.download(url, savePath, onReceiveProgress: progressCallback);
+  }
+
+  //检查是否wifi
+  static Future<bool> wifiStatus() async {
+    return await Connectivity().checkConnectivity() == ConnectivityResult.wifi;
+  }
+
+  //检查网络是否可用
+  static Future<bool> networkOk(BuildContext context) async {
+    Response response =
+        await get(context: context, url: "https://www.baidu.com/");
+    return response.statusCode < 300;
   }
 
   static Future<Dio> _getInstance(

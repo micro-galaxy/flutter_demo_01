@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_demo/project_1_navigate/http/http.dart';
 import 'package:flutter_app_demo/project_1_navigate/provider/providerState.dart';
 import 'package:flutter_app_demo/project_1_navigate/storage/storage.dart';
+import 'package:flutter_app_demo/project_1_navigate/utils/publicWidget.dart';
 import 'package:provider/provider.dart';
 
 class VideoList extends StatefulWidget {
@@ -44,9 +45,16 @@ class VideoListState extends State<VideoList> {
         children: <Widget>[
           getVideoListTitleWidget(),
           Container(
-            height: height * 0.571,
-            child:
-                ListView(controller: scrollController, children: videoWidgets),
+            width: width,
+            height: 0.3,
+            color: Colors.black54,
+          ),
+          Expanded(
+            child: Container(
+//            height: height * 0.563,
+              child: ListView(
+                  controller: scrollController, children: videoWidgets),
+            ),
           )
         ],
       ),
@@ -77,10 +85,11 @@ class VideoListState extends State<VideoList> {
           i.toString(),
           '视频名称视频名称视频名称视频名称视频名称视频名称$i',
           (videoId, details) => {
-                Scaffold.of(context).showSnackBar(SnackBar(
-                  content: Text("数据获取成功"),
-                  backgroundColor: Colors.blue,
-                ))
+                PublicWidget.showSnackBar(
+                    context: context,
+                    text: "数据获取成功",
+                    textColor: Colors.white,
+                    backgroundColor: Colors.green)
               }));
       if (i < 10 - 1) {
         videoList.add(getLineWidget());
@@ -92,13 +101,14 @@ class VideoListState extends State<VideoList> {
     });
   }
 
-//  点击下载视频
+  //点击下载视频
 
-//  视频列表标题
+  //视频列表标题
   Widget getVideoListTitleWidget() {
     return Container(
       height: height * 0.05,
       padding: EdgeInsets.only(left: 12),
+      margin: EdgeInsets.only(bottom: 6),
       child: Row(
         children: <Widget>[
           Icon(
@@ -120,11 +130,11 @@ class VideoListState extends State<VideoList> {
     );
   }
 
-//  单个视频样式
+  //单个视频样式
   Widget getVideoListItemWidget(
       String videoId, String videoName, Function onTapUpCallback) {
     return Container(
-      height: height * 0.05,
+      height: height * 0.055,
       width: width,
       margin: EdgeInsets.only(top: 8, bottom: 8),
       child: Row(
@@ -142,7 +152,7 @@ class VideoListState extends State<VideoList> {
             width: 12,
             height: 0,
           ),
-//添加点击事件
+          //添加点击事件
           GestureDetector(
             onTapUp: (details) => onTapUpCallback(videoId, details),
             //            视频名称
@@ -159,7 +169,6 @@ class VideoListState extends State<VideoList> {
               ),
             ),
           ),
-
           getCatchBottomWidget(catchVideo)
         ],
       ),
@@ -188,64 +197,53 @@ class VideoListState extends State<VideoList> {
     }
   }
 
-//  缓存视频按钮
+  //缓存视频按钮
   Widget getCatchBottomWidget(Function catchCallback) {
-    //            视频缓存按钮
     return GestureDetector(
       onTapUp: (details) => catchCallback(details),
       child: Container(
         width: 50,
-        height: 50,
-//              color: Colors.red,
-        child: Stack(
-          alignment: Alignment.center,
-          children: <Widget>[
-            Container(
-              width: 30,
-              height: 30,
-              //                    可根据条件显示、隐藏
-              child: Offstage(
-                offstage: false,
-                child: CircularProgressIndicator(
-                  valueColor: new AlwaysStoppedAnimation<Color>(Colors.blue),
-                  value: providerState.getProgress(),
-                ),
-              ),
-            ),
-            Positioned(
-              top: 0,
-              right: 0,
-              left: 0,
-//                    可根据条件显示、隐藏
-              child: Offstage(
-                offstage: true,
-                child: Column(
-                  children: <Widget>[
-                    Icon(
-                      Icons.cloud_download,
-                      color: Colors.blue,
-                    ),
-                    Text(
-                      "缓存",
-                      style:
-                          TextStyle(fontSize: 10, fontWeight: FontWeight.w700),
-                    )
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
+        height: height * 0.05,
+        //TODO 根据是否已缓存显示控件逻辑
+        child: catchButtonWidget(false),
       ),
     );
   }
 
-//  视频列表分割线
-  Widget getLineWidget() {
-    return Container(
-      margin: EdgeInsets.only(left: 18, right: 22),
-      color: Colors.grey,
-      height: 0.3,
+  //缓存按钮widget
+  Widget catchButtonWidget(bool catched) {
+    return Column(
+      children: <Widget>[
+        Icon(
+          Icons.cloud_download,
+          color: catched ? Colors.green : Colors.grey,
+          size: 20,
+        ),
+        Text(
+          catched ? "已缓存" : "缓存",
+          style: TextStyle(fontSize: 9, fontWeight: FontWeight.w700),
+        )
+      ],
     );
   }
+
+  //缓存进度widget
+  Widget catchProgressWidget(double progress) {
+    return Container(
+      //可根据条件显示、隐藏
+      child: CircularProgressIndicator(
+        valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+        value: progress,
+      ),
+    );
+  }
+}
+
+//视频列表分割线
+Widget getLineWidget() {
+  return Container(
+    margin: EdgeInsets.only(left: 18, right: 22),
+    color: Colors.grey,
+    height: 0.3,
+  );
 }

@@ -20,6 +20,7 @@ class NavigateState extends State<Navigate> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: _children[_currentIndex],
       bottomNavigationBar: new BottomNavigationBar(

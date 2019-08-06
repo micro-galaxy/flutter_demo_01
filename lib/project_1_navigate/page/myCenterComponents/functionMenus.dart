@@ -5,7 +5,7 @@ import 'package:flutter_app_demo/project_1_navigate/router/routerAnimation.dart'
 import 'package:video_player/video_player.dart';
 
 import 'package:flutter_app_demo/project_1_navigate/page/videoComponents/videoPlayer.dart';
-import 'orderList.dart';
+import 'package:flutter_app_demo/project_1_navigate/page/orderList.dart';
 
 class FunctionMenus extends StatefulWidget {
   @override
@@ -115,9 +115,11 @@ class FunctionMenusState extends State<FunctionMenus> {
 //    Navigator.push(context, RouterAnimation(new OrderList()));
   }
 
-  void onRecommendTapUp(BuildContext context, details) {}
+  void onRecommendTapUp(BuildContext context, details) {
+    Navigator.pushNamed(context, Router.getRouterPathByName("Feedback"));
+  }
 
   void onSettingTapUp(BuildContext context, details) {
-    Navigator.pushNamed(context, Router.getRouterPathByName("VideoPlay"));
+    Navigator.pushNamed(context, Router.getRouterPathByName("Setting"));
   }
 }
